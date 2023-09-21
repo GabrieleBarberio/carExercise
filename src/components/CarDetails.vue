@@ -46,6 +46,10 @@
       <div v-else>
         <h1>Error</h1>
       </div>
+
+      <router-link :to="'/'">
+        <button class="primary-btn">Go Back</button>
+      </router-link>
     </div>
   </div>
 </template>
