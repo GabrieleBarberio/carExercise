@@ -6,6 +6,20 @@
       <div
         class="flex bg-white flex-col rounded-lg items-center w-2/4 shadow-xl"
       >
+        <div class="relative flex m-3 w-10/12 flex-row-reverse rounded-lg">
+          <input
+            name="searchInput"
+            class="peer w-full rounded-r-lg p-2 border border-slate-400 px-2 text-dark placeholder-slate-400 transition-colors duration-300 focus:border-dark focus:outline-none"
+            type="text"
+          />
+          <label
+            class="flex items-center rounded-l-lg border border-slate-400 bg-slate-50 px-2 text-sm text-dark transition-colors duration-300 peer-focus:border-dark peer-focus:bg-dark peer-focus:text-white"
+            for="searchInput"
+          >
+            search
+          </label>
+        </div>
+
         <ul class="flex flex-col w-10/12 py-4">
           <li
             class="flex lg:flex-col items-center hover:bg-gray-200 rounded-lg justify-between px-10 py-3 w-full"
