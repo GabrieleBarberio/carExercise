@@ -21,30 +21,37 @@
             search
           </label>
         </div>
+
         <ul class="flex flex-col w-10/12 py-4">
           <div v-if="filteredCars.length > 0">
+            <!-- render this div if filtered cars is not empty-->
             <li
               class="flex items-center hover:bg-gray-200 rounded-lg justify-between px-10 py-3 w-full"
               v-for="car in filteredCars"
               :key="car.id"
             >
               <p>{{ car.make }} {{ car.model }} {{ car.price }}</p>
+              <!-- display info about the search match-->
 
               <RouterLink :to="`/car/${car.id}`">
+                <!-- link to the path that match the car item-->
                 <button class="primary-btn">
                   <span>Show more</span>
                 </button>
               </RouterLink>
             </li>
           </div>
+
           <div v-else>
+            <!-- display information about the entire list if there aren't any matches -->
             <li
               class="flex lg:flex-col items-center hover:bg-gray-200 rounded-lg justify-between px-10 py-3 w-full"
               v-for="car in cars"
             >
               <p>{{ car.make }} {{ car.model }} {{ car.price }}</p>
 
-              <RouterLink :to="`/car/${car.id}`">
+              <RouterLink :to="`/car/${car.id}`"
+                ><!-- link to the path that match the car item-->
                 <button class="primary-btn">
                   <span>Show more</span>
                 </button>
@@ -72,6 +79,10 @@ export interface Car {
   mileage: number;
 }
 
+const searchInputValue = ref(""); // ref to the search input value
+const cars = ref<Car[]>([]); // cars as an array on CarType based
+
+//checking the search match computing the value of search terms
 let filteredCars = computed(() => {
   const searchTerm = searchInputValue.value.toLowerCase();
   return cars.value.filter((car) => {
@@ -82,14 +93,12 @@ let filteredCars = computed(() => {
   });
 });
 
+// get the search value from search input and prevent case sensitive error
 const handleSearch = () => {
   const searchTerm = searchInputValue.value.toLowerCase();
   console.log(searchTerm);
   console.log(filteredCars.value);
 };
-
-const searchInputValue = ref("");
-const cars = ref<Car[]>([]); // cars as an array on CarType based
 
 onMounted(async () => {
   //get the data when the component mount
