@@ -8,9 +8,11 @@
       >
         <div class="relative flex m-3 w-10/12 flex-row-reverse rounded-lg">
           <input
+            v-on:input="handleSearch"
             name="searchInput"
             class="peer w-full rounded-r-lg p-2 border border-slate-400 px-2 text-dark placeholder-slate-400 transition-colors duration-300 focus:border-dark focus:outline-none"
             type="text"
+            v-model="searchInputValue"
           />
           <label
             class="flex items-center rounded-l-lg border border-slate-400 bg-slate-50 px-2 text-sm text-dark transition-colors duration-300 peer-focus:border-dark peer-focus:bg-dark peer-focus:text-white"
@@ -38,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import getCars from "../utility/getCars";
 
 // Car type interface
@@ -52,6 +54,23 @@ export interface Car {
   mileage: number;
 }
 
+let filteredCars = computed(() => {
+  const searchTerm = searchInputValue.value.toLowerCase();
+  return cars.value.filter((car) => {
+    return (
+      car.model.toLowerCase().includes(searchTerm) ||
+      car.make.toLowerCase().includes(searchTerm)
+    );
+  });
+});
+
+const handleSearch = () => {
+  const searchTerm = searchInputValue.value.toLowerCase();
+  console.log(searchTerm);
+  console.log(filteredCars.value);
+};
+
+const searchInputValue = ref("");
 const cars = ref<Car[]>([]); // cars as an array on CarType based
 
 onMounted(async () => {
