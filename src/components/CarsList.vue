@@ -30,9 +30,11 @@
             >
               <p>{{ car.make }} {{ car.model }} {{ car.price }}</p>
 
-              <button class="primary-btn">
-                <span class="m-2 whitespace-nowrap">Show more</span>
-              </button>
+              <RouterLink :to="`/car/${car.id}`">
+                <button class="primary-btn">
+                  <span>Show more</span>
+                </button>
+              </RouterLink>
             </li>
           </div>
           <div v-else>
@@ -42,9 +44,11 @@
             >
               <p>{{ car.make }} {{ car.model }} {{ car.price }}</p>
 
-              <button class="primary-btn">
-                <span>Show more</span>
-              </button>
+              <RouterLink :to="`/car/${car.id}`">
+                <button class="primary-btn">
+                  <span>Show more</span>
+                </button>
+              </RouterLink>
             </li>
           </div>
         </ul>
