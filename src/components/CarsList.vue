@@ -21,18 +21,32 @@
             search
           </label>
         </div>
-
         <ul class="flex flex-col w-10/12 py-4">
-          <li
-            class="flex lg:flex-col items-center hover:bg-gray-200 rounded-lg justify-between px-10 py-3 w-full"
-            v-for="car in cars"
-          >
-            <p>{{ car.make }} {{ car.model }} {{ car.price }}</p>
+          <div v-if="filteredCars.length > 0">
+            <li
+              class="flex items-center hover:bg-gray-200 rounded-lg justify-between px-10 py-3 w-full"
+              v-for="car in filteredCars"
+              :key="car.id"
+            >
+              <p>{{ car.make }} {{ car.model }} {{ car.price }}</p>
 
-            <button class="primary-btn">
-              <span>Show more</span>
-            </button>
-          </li>
+              <button class="primary-btn">
+                <span class="m-2 whitespace-nowrap">Show more</span>
+              </button>
+            </li>
+          </div>
+          <div v-else>
+            <li
+              class="flex lg:flex-col items-center hover:bg-gray-200 rounded-lg justify-between px-10 py-3 w-full"
+              v-for="car in cars"
+            >
+              <p>{{ car.make }} {{ car.model }} {{ car.price }}</p>
+
+              <button class="primary-btn">
+                <span>Show more</span>
+              </button>
+            </li>
+          </div>
         </ul>
       </div>
     </div>
