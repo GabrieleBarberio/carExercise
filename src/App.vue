@@ -1,7 +1,5 @@
 <template>
-  <CarsList></CarsList>
+  <RouterView></RouterView>
 </template>
 
-<script setup lang="ts">
-import CarsList from "./components/CarsList.vue";
-</script>
+<script setup lang="ts"></script>
